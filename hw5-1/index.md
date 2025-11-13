@@ -6,8 +6,8 @@ permalink: /hw5-1/
 
 # HW5.1 – Licenses Visualizations
 
-For this homework, I used the **Illinois Licenses Dataset** (`licenses_fall2022.csv`) from the IS445 data repository.  
-I created two visualizations: one simple bar chart and one interactive time-based plot.
+For this HW5, I used the **Illinois Licenses Dataset** from `licenses_fall2022.csv`.  
+I created two plots (1,2): one simple bar chart and one interactive time based plot.
 
 ---
 
@@ -17,24 +17,11 @@ I created two visualizations: one simple bar chart and one interactive time-base
         width="100%" height="450" style="border:none;"></iframe>
 
 ### Description  
-This plot shows the **top 15 most common license types** in the dataset. Each bar represents a license category, and the x-axis shows how many licenses fall under that category. This visualization helps quickly identify which license types appear most frequently.
+This plot 1 shows the top 15 most common license types in the dataset like it says on the title. So, basically giving a quick sense of which categories appear the most. I used a horizontal bar chart because some of the license names are pretty long and I thought tilting the names would be bad idea, + it’s just much easier to read. The encodings are simple: the y axis is the license type, the x axis is the number of licenses, and I left a default navy teal color, because we are just comparing the sizes. Not because I didn't know how to make it fancy and cool, just because using multiple colors would just distract from the EDA I did.
 
-### Design choices – Encodings  
-A **horizontal bar chart** was used because long category names are easier to read when placed on the y-axis.  
-- **Y-axis (nominal)** → License Type  
-- **X-axis (quantitative)** → Count of licenses  
-Tooltips were added for clarity, allowing users to check exact values.
+Before drawing the graph, I did little bit of fixing of date column, mainly because I needed it for my plot2. Order for me to make cool interactive plot2, the `Original Issue Date` column was stored as a string, so I first converted it into a datetime format. After that, I created a new “month” column by extracting the month portion of each date, since the second plot looks at how license counts change month by month. Even though this first plot does not use the date or month information, I kept these transformations in as part of my overall process. 
 
-### Design choices – Color  
-I used a **single, consistent color** for all bars. Since the main purpose is to compare magnitudes, adding multiple colors would distract more than help. A uniform color keeps the visual focus on the ranking.
 
-### Data transformations  
-In the Python notebook, I:  
-1. Grouped data by `License Type`  
-2. Counted the number of records in each category  
-3. Selected the top 15 categories  
-4. Sorted them in descending order  
-This reduces noise from rare license types and highlights the major categories.
 
 ---
 
@@ -44,45 +31,19 @@ This reduces noise from rare license types and highlights the major categories.
         width="100%" height="450" style="border:none;"></iframe>
 
 ### Description  
-This plot displays **how many licenses were issued each month**, for a license type selected from a dropdown menu. The plot updates dynamically based on user choice, allowing exploration of trends over time.
+This plot 2 shows how the number of licenses changes over time for any selected license type. Before drawing the graph, I cleaned the date column by converting `Original Issue Date' like I have explained in above. X axis represents this month based time variable (the axis labels appear as years), and the y axis shows how many licenses were issued. I used a line chart with points(months) because I couldn't find any better way, and I thought spikes would be easy to tell in line graphs. 
+As you can see I made a new `License_Type' column before making plot2. The original name has a space in it, just to avoids errors, and much more easier and simpler when building a plot. 
+ 
+For design choices, I kept the color fixed as default one, since the dropdown menu would control which license type is being viewed. Adding more colors would make no sense but pretty. If you put cursor on the point you want to look at, the tooltip includes the month, the number of license ("# of licenses"), and the selected license type so we can check exact values.
 
-### Design choices – Encodings  
-A **line chart** with points was used to show temporal trends:  
-- **X-axis (temporal)** → Month  
-- **Y-axis (quantitative)** → Number of licenses  
-- **Tooltip** → Month, count, and selected license type  
-A single line color was kept to avoid unnecessary visual clutter.
-
-### Design choices – Color  
-The line uses one fixed color because the dropdown already controls which license type is being viewed. Using multiple colors for different categories would not improve the visualization, since only one category is visible at a time.
-
-### Data transformations  
-In the notebook, I:  
-1. Converted `Original Issue Date` to datetime  
-2. Extracted a `month` variable (rounded to first day of month)  
-3. Aggregated counts by `month` and `License Type`  
-This preprocessing smooths daily noise and highlights month-to-month patterns.
-
----
-
-## Interactivity
-
-The second plot includes a **dropdown menu** that lets the user select a specific license type.  
-This interactivity makes the visualization far clearer:
-
-- The viewer can compare temporal trends without overlapping multiple lines  
-- The graph remains clean and readable  
-- The user can explore patterns across categories without extra clutter  
-
-This interactive element adds flexibility and enhances insight.
+Last but not least, main interactivity in plot2 is probably the dropdown menu that shows under all "license type" column. I believe this makes the visualization much more cooler because it avoids plotting dozens of overlapping lines and instead lets us to see each category individually.
 
 ---
 
 ## Links
 
-- **The Data:**  
+**License Data:**  
   [licenses_fall2022.csv](https://github.com/UIUC-iSchool-DataViz/is445_data/raw/main/licenses_fall2022.csv)
-
-- **The Analysis (Python Notebook):**  
+**(Python Notebook):**  
   [hw5_1_licenses.ipynb](https://github.com/jinujung1021/jinujung1021.github.io/blob/main/python_notebooks/hw5_1_licenses.ipynb)
 
