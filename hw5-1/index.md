@@ -4,7 +4,7 @@ title: "HW5"
 permalink: /hw5-1/
 ---
 
-# HW5.1 – Licenses Visualizations
+# HW5-Jekyll! 
 
 For this HW5, I used the **Illinois Licenses Dataset** from `licenses_fall2022.csv`.  
 I created two plots (1,2): one simple bar chart and one interactive time based plot.
