@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "HW5.1 – Licenses Visualizations"
+title: "HW5"
 permalink: /hw5-1/
 ---
 
